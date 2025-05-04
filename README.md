@@ -20,7 +20,8 @@ CRUD functionality, should be easy to seperate betwwen user and admin using auth
 Unit tests - seperate project, make sure they have good eneough coverage about 80% fluent assertion, just not the newest since it is paid not just one test for VAT mocking GET POST.....
 Error handling, 
 Resx files for texts.
-More comments <summary><summary>, again time thing...
+
+More comments <summary><summary> again time thing...
 It is what it is and its not great.
 
 
