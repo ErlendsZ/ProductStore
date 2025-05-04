@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using ProductStore.Data;
+using ProductStore.Helpers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,8 +12,11 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
+builder.Services.Configure<IdentitySeedSettings>(
+    builder.Configuration.GetSection("IdentitySeed"));
 
 var app = builder.Build();
 
@@ -42,5 +46,11 @@ app.MapControllerRoute(
 
 app.MapRazorPages()
    .WithStaticAssets();
+
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+    db.Database.Migrate(); // Applies migrations and creates the DB if it doesn't exist
+}
 
 app.Run();
