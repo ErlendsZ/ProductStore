@@ -31,7 +31,7 @@ public static class IdentitySeeder
             var result = await userManager.CreateAsync(user, config.AdminPassword);
             if (result.Succeeded)
             {
-                await userManager.AddToRoleAsync(user, nameof(config.Roles));
+                await userManager.AddToRoleAsync(user, "Admin");
             }
         }
     }

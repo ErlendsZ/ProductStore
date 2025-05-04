@@ -16,7 +16,7 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
 builder.Services.Configure<IdentitySeedSettings>(
-    builder.Configuration.GetSection("IdentitySeed"));
+    builder.Configuration.GetSection("IdentitySeedSettings"));
 
 var app = builder.Build();
 
@@ -50,7 +50,12 @@ app.MapRazorPages()
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-    db.Database.Migrate(); // Applies migrations and creates the DB if it doesn't exist
+    db.Database.Migrate(); 
+}
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    await IdentitySeeder.SeedRolesAndAdminAsync(services);
 }
 
 app.Run();
