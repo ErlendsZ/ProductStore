@@ -1,5 +1,7 @@
 Implemented role base logic. Role based view, Admin sees admin content user sees user content, cant access unauthorized.
-Admin is user created automaticly. Add to json secrets:
+
+Admin user created automaticly. Add to json secrets:
+
 Here is example:
  "IdentitySeedSettings": {
      "AdminEmail": "admin@admin.com",
