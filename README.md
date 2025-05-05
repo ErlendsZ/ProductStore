@@ -16,7 +16,7 @@ Open project in visual studio  and hit this ![image](https://github.com/user-att
 To create standart user just use registration system.
 
 In future - adde more llogic to product table.
-CRUD functionality, should be easy to seperate betwwen user and admin using authorization rules.
+CRUD functionality, should be easy to seperate betwwen user and admin using authorization rules. As example right now only admin can view pricvacy page.
 Unit tests - seperate project, make sure they have good eneough coverage about 80% fluent assertion, just not the newest since it is paid not just one test for VAT mocking GET POST.....
 Error handling, 
 Resx files for texts.
